@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact{% endblock title %}
+
+{% block style %}
+.container{
+    max-width:500px;
+    border:5px solid black;
+    padding:20px;
+    border-radius:20px;
+    font-weight:bold;
+}
+.form-control{
+    border:2px solid black;
+}
+@media screen and (max-width: 600px) {
+    .container{
+        max-width:350px;
+    }
+  }
+{% endblock style %}
+
+{% block body %}
+
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-0" role="alert">
+  <strong>Message : </strong>{{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<div class="container my-3">
+    <h2 class="text-center" >Contact Us</h2>
+    
+    <form method="post" action="/contact">
+    
+        <div class="form-group">
+        {% csrf_token %}
+            <label for="exampleFormControlInput1" >Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="exampleFormControlInput1" >Phone Number</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="**********" required>
+        </div>
+<br>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Enter your query</label>
+            <textarea class="form-control" id="desc" name="desc" rows="3" required></textarea>
+        </div>
+<br>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+{% endblock %}
