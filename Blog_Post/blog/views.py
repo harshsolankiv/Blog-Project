@@ -5,6 +5,10 @@ from blog.models import Post, BlogComment
 # Create your views here.
 
 
+def blogCreate(request):
+    return render(request, "blog/blogCreat.html")
+
+
 def blogHome(request):
     allPosts = Post.objects.all()
     context = {
