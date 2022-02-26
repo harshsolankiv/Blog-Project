@@ -5,12 +5,33 @@
 {% block body %}
 
 <div class="container my-3">
-    <h2 class="blog-post-title">{{ post.title }}</h2>
-    <p class="blog-post-meta">{{ post.timestamp}} by <a href="/about">{{post.author}}</a></p>
+  <h2 class="blog-post-title">{{ post.title }}</h2>
+  <p class="blog-post-meta">{{ post.timestamp}} by <a href="/about">{{post.author}}</a></p>
 
-    <p>{{post.content}}</p>
-    <hr>
+  <p>{{post.content}}</p>
+  <hr>
 
+</div>
+<div class="container">
+  <h2>Comments</h2>
+  <form action="/blog/postComment" method="post">
+    {% csrf_token %}
+    <label class="my-2" for="comemnt">Post Your Views Here 😊</label><br>
+    <textarea class="my-2" type="text" name="comment" placeholder="Enter Comment" cols="60" rows="3"></textarea>
+    <br>
+    <input type="hidden" name="postSno" value="{{post.sno}}">
+    <input class="my-2 btn btn-outline-success" type="submit" value="Submit">
+  </form>
+  {% for comment in comments %}
+  <div class="row my-3">
+    <div class="col-md-1 ">
+      <img src="/static/icon.png" alt="user" class="rounded mx-auto d-block w-100 p-2">
+    </div>
+    <div class="col-md-11 ">
+      <b>{{comment.user.username}}</b> ⏳ {{comment.timestamp}}
+      <div>{{comment.comment}}</div>
+    </div>
   </div>
-
+  {% endfor %}
+</div>
 {% endblock body %}
