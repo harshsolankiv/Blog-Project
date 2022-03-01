@@ -31,14 +31,14 @@ table, th, td {
         <tbody>
             <tr>
                 {% for i in pt %}
-                <td>{{i.title}}</td>
+                <td><a href="/blog/{{i.slug}}" style="text-decoration:none; font-weight:bold;">{{i.title}}</a></td>
                 <td>{{i.timestamp }}</td>
                 <td>{{i.views}}</td>
                 <td>
                     <button id="eyeb" ><a id="eyee" href="visible"><i class="fa fa-eye" ></i></a></button>
                 </td>
                 <td><a href="">Edit</a></td>
-                <td><button ><i class="fa fa-trash" style="color:red;"></i></button></td>
+                <td><button><a href="delete/{{i.sno}}"><i class="fa fa-trash" style="color:red;"></i></a></button></td>
             </tr>
             {% endfor %}
         </tbody>

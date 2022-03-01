@@ -17,7 +17,8 @@ def blogCreate(request):
         title = request.POST['title']
         content = request.POST['myhtml1']
         author = request.user.first_name + " " + request.user.last_name
-        slug = request.POST['title']+"-"+request.user.username
+        t = request.POST['title'].replace(" ", "-")
+        slug = t+"-"+request.user.username
         timestamp = timeStamp
 
         post = Post(title=title, author=author, content=content,
@@ -87,5 +88,12 @@ def postComment(request):
     return redirect(f"/blog/{post.slug}")
 
 
-def visible(request):
-    pass
+def delete(request, sno):
+    item = Post.objects.get(sno=sno)
+    item.delete()
+    messages.success(request, ("Blog has been deleted!"))
+    return redirect(blogEdit)
+
+
+# def Edit(request, sno):
+#     return render(request, "edit.html")
