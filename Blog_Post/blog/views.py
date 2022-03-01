@@ -22,6 +22,9 @@ def blogCreate(request):
 
     return render(request, "blog/blogCreate.html")
 
+def blogEdit(request):
+    return render(request, "blog/blogEdit.html")
+
 
 def blogHome(request):
     allPosts = Post.objects.all()

@@ -33,7 +33,7 @@ table, th, td {
                 <td>1-03-2022</td>
                 <td>1000</td>
                 <td>
-                    <button id="eyeb" ><span id="eyee"><i class="fa fa-eye" ></i></span></button>
+                    <button id="eyeb"><span id="eyee"><i class="fa fa-eye"></i></span></button>
                 </td>
                 <td><a href="">Edit</a></td>
             </tr>
@@ -42,8 +42,15 @@ table, th, td {
 </div>
 <script>
     document.getElementById('eyeb').onclick = function() {
+        if(document.getElementById('eyee').innerHTML === '<i class="fa fa-eye"></i>'){
         document.getElementById('eyee').innerHTML = '<i class="fa fa-eye-slash"></i>';
     }
+        else{
+            document.getElementById('eyee').innerHTML = '<i class="fa fa-eye"></i>';
+        }
+        }
+        
+    
     
     </script>
 {% endblock body %}
