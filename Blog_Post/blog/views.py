@@ -99,14 +99,16 @@ def Edit(request, sno):
     item2 = Post.objects.get(sno=sno)
     title2 = item2.title
     content2 = item2.content
-    
+
     if request.method == 'POST':
         item2.title = request.POST['title']
         item2.content = request.POST['myhtml1']
         item2.save()
+        messages.success(request, ("Blog has been Updated!"))
+        return redirect(blogEdit)
 
     context = {
-        'title2' : title2,
-        'content2' : content2,
+        'title2': title2,
+        'content2': content2,
     }
     return render(request, "blog/edit.html/", context)
