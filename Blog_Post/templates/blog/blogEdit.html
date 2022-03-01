@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Blog{% endblock title %}
+{% block style %}
+table, th, td {
+    width:800px;
+    padding:10px;
+    border: 3px solid black;
+    border-collapse: collapse;
+    text-align:center;
+  }
+{% endblock style %}
+{% block body %}
+
+<div class="col d-flex justify-content-center">
+    <h1 class="text-center mb-3 my-3" style="margin: 10px;"><span class="badge bg-info text-dark">Edit Blog Post</span></h1>
+</div>
+<div class="col d-flex justify-content-center">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Views</th>
+                <th>Visibilty</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Demo</td>
+                <td>1-03-2022</td>
+                <td>1000</td>
+                <td>
+                    <select name="vis" id="vis">
+                        <option value="Public">Public</option>
+                        <option value="private">private</option>
+                    </select>
+                </td>
+                <td><a href="">Edit</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock body %}

@@ -6,6 +6,7 @@ from .import views
 urlpatterns = [
     path('postComment', views.postComment, name="postComment"),
     path('blogCreate', views.blogCreate, name="blogCreate"),
+    path('blogEdit', views.blogEdit, name="blogEdit"),
     path('', views.blogHome, name="blogHome"),
     path('<str:slug>', views.blogPost, name="blogPost"),
 

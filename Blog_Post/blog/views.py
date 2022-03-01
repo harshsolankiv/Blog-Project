@@ -11,6 +11,10 @@ def blogCreate(request):
     return render(request, "blog/blogCreat.html")
 
 
+def blogEdit(request):
+    return render(request, "blog/blogEdit.html")
+
+
 def blogHome(request):
     allPosts = Post.objects.all()
     context = {
@@ -23,8 +27,8 @@ def blogPost(request, slug):
     post = Post.objects.filter(slug=slug)[0]
     post.views = post.views+1
     post.save()
-    comments = BlogComment.objects.filter(post=post, parent = None)
-    replies = BlogComment.objects.filter(post=post).exclude(parent = None)
+    comments = BlogComment.objects.filter(post=post, parent=None)
+    replies = BlogComment.objects.filter(post=post).exclude(parent=None)
     replyDict = {}
     for reply in replies:
         if reply.parent.sno not in replyDict.keys():
@@ -34,8 +38,8 @@ def blogPost(request, slug):
     context = {
         'post': post,
         'comments': comments,
-        'user' : request.user,
-        'replyDict' : replyDict,
+        'user': request.user,
+        'replyDict': replyDict,
     }
     return render(request, "blog/blogPost.html", context)
 
@@ -52,8 +56,9 @@ def postComment(request):
             comment.save()
             messages.success(request, "Your comment posted 👏👏")
         else:
-            parent = BlogComment.objects.get(sno = parentSno)
-            comment = BlogComment(comment=comment, user=user, post=post, parent = parent)
+            parent = BlogComment.objects.get(sno=parentSno)
+            comment = BlogComment(
+                comment=comment, user=user, post=post, parent=parent)
         comment.save()
         messages.success(request, "Your reply posted 👏👏")
 
