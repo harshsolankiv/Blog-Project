@@ -35,7 +35,11 @@ table, th, td {
                 <td>{{i.timestamp }}</td>
                 <td>{{i.views}}</td>
                 <td>
+                    {% if i.visibility < 1 %}
+                    <button id="eyeb" ><a id="eyee" href="visible/{{i.sno}}"><i class="fa fa-eye-slash" ></i></a></button>
+                    {%else%}
                     <button id="eyeb" ><a id="eyee" href="visible/{{i.sno}}"><i class="fa fa-eye" ></i></a></button>
+                    {% endif %}
                 </td>
                 <td><a href="Edit/{{i.sno}}">Edit</a></td>
                 <td><button><a href="delete/{{i.sno}}"><i class="fa fa-trash" style="color:red;"></i></a></button></td>
@@ -44,7 +48,7 @@ table, th, td {
         </tbody>
     </table>
 </div>
-<script>
+{% comment %} <script>
     document.getElementById('eyeb').onclick = function() {
         if(document.getElementById('eyee').innerHTML === '<i class="fa fa-eye"></i>'){
         document.getElementById('eyee').innerHTML = '<i class="fa fa-eye-slash"></i>';
@@ -56,5 +60,5 @@ table, th, td {
         
     
     
-    </script>
+    </script> {% endcomment %}
 {% endblock body %}

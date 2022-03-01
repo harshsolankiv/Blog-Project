@@ -43,11 +43,7 @@
             <a class="nav-link" href="/blog">Blog</a>
           </li>
           {% comment %} new added {% endcomment %}
-          {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="blogCreate">Create Blog</a>
-          </li>
-          {% endif %}
+         
           {% comment %} new added {% endcomment %}
         </ul>
         <form method="get" action="/search" class="d-flex my-2 my-lg-0 mx-3">

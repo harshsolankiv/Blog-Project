@@ -39,7 +39,7 @@ def blogEdit(request):
 
 
 def blogHome(request):
-    allPosts = Post.objects.all()
+    allPosts = Post.objects.filter(visibility=1)
     context = {
         'allPosts': allPosts,
     }
@@ -116,6 +116,10 @@ def Edit(request, sno):
 
 def Visible(request, sno):
     pt = Post.objects.get(sno=sno)
-    pt.visibility = 0
+    vis = pt.visibility
+    if(vis == 1):
+        pt.visibility = 0
+    else:
+        pt.visibility = 1
     pt.save()
     return redirect(blogEdit)

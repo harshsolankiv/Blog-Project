@@ -3,8 +3,14 @@
 {% block title %}Blog Home{% endblock title %}
 {% block blogactive %} active {% endblock blogactive %}
 {% block body %}
+<div class="d-flex justify-content-center">
+  <h1 class="text-center mb-3 my-3"><span class="badge bg-info text-dark "><a href="blogCreate"
+    style="text-decoration:none;color:black; ">Create Blog</a></span></h1>
+  <h1 class="text-center mb-3 my-3 mx-1"><span class="badge bg-info text-dark "><a href="blogEdit"
+              style="text-decoration:none;color:black; ">Edit Blog</a></span></h1>
+</div>
 <div class="container my-3">
-    <h2>Coding articles:</h2>
+    <h2>Articles:</h2>
     {% for post in allPosts %}
     <div class="row g-0 border rounded overflow-hidden flex-md-row my-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
