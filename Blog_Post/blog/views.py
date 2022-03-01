@@ -112,3 +112,10 @@ def Edit(request, sno):
         'content2': content2,
     }
     return render(request, "blog/edit.html/", context)
+
+
+def Visible(request, sno):
+    pt = Post.objects.get(sno=sno)
+    pt.visibility = 0
+    pt.save()
+    return redirect(blogEdit)
