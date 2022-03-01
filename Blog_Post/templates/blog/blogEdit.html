@@ -9,6 +9,7 @@ table, th, td {
     border-collapse: collapse;
     text-align:center;
   }
+  
 {% endblock style %}
 {% block body %}
 
@@ -32,15 +33,17 @@ table, th, td {
                 <td>1-03-2022</td>
                 <td>1000</td>
                 <td>
-                    <select name="vis" id="vis">
-                        <option value="Public">Public</option>
-                        <option value="private">private</option>
-                    </select>
+                    <button id="eyeb" ><span id="eyee"><i class="fa fa-eye" ></i></span></button>
                 </td>
                 <td><a href="">Edit</a></td>
             </tr>
         </tbody>
     </table>
 </div>
-
+<script>
+    document.getElementById('eyeb').onclick = function() {
+        document.getElementById('eyee').innerHTML = '<i class="fa fa-eye-slash"></i>';
+    }
+    
+    </script>
 {% endblock body %}

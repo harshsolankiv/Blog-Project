@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Blog{% endblock title %}
+{% block style %}
+#mytextarea {
+height: 100vh;
+}
+.tox-notifications-container{
+display: none;
+}
+.tox{
+margin-left:20px;
+margin-right:20px;
+}
+.postcontainer{
+    margin:auto;
+justify-content:center;
+aling-item:center;
+}
+
+input, textarea{
+    border: solid black;
+    border-width : 2px;
+}
+
+#title{
+    font-size: 120%;
+    width: 40%;
+    font-weight: bold;
+}
+
+#Author, #Slug{
+    font-size: 105%;
+}
+
+#Date{
+    font-size: 105%;
+    width: 20%;
+}
+
+{% endblock style %}
+{% block body %}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+        selector: '#mytextarea',
+        plugins: [
+            'advlist autolink link image lists charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+            'table emoticons template paste help'
+        ],
+        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
+            'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+            'forecolor backcolor emoticons | help',
+        menu: {
+            favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
+        },
+        menubar: 'favs file edit view insert format tools table help',
+        content_css: 'css/content.css'
+    });
+    alert = function () { };
+</script>
+<div class="d-flex justify-content-center">
+<h1 class="text-center mb-3 my-3"><span class="badge bg-info text-dark ">Create Post</span></h1>
+<h1 class="text-center mb-3 my-3 mx-1"><span class="badge bg-info text-dark "><a href="blogEdit" style="text-decoration:none;color:black; ">Edit Blog</a></span></h1>
+</div>
+
+<div id="myhtml"></div>
+
+<div class="postcontainer mx-4 my-3" >
+    <form method="post">
+        {% csrf_token %}
+        <!-- <label for="title">Enter the Title</label> -->
+        <input type="text" name="title" id="title" class="px-4 py-2" placeholder="Enter Title of the Blog" ><br><br>
+        
+        <textarea id = "myhtml1" name='myhtml1' class="px-4 py-2" placeholder="Converted HTML" cols="40"></textarea><br>
+        <!-- <label for="Author">Author</label> -->
+        <input type="text" name="author" id="Author" class="px-4 py-2 mt-3" placeholder="Enter Author Name"><br><br>
+        <!-- <label for="Slug">Slug</label> -->
+        <input type="text" name="slug" id="Slug" class="px-4 py-2" placeholder="Enter Slug"><br><br>
+        <!-- <label for="Date">Date</label> -->
+        <input type="datetime-local" name="timestamp" id="Date" class="px-2 py-2" placeholder="Enter Date"><br><br>
+        <button type="submit" class="btn btn-success btn-large">Post your Blog</button>
+    </form>
+</div>
+
+<textarea id="mytextarea">Hello, World!</textarea><br>
+<button id="bt" class="btn btn-primary mt-1 mb-3 mx-3">Get Html</button>
+
+
+<script>
+    bt.addEventListener('click', (e) => {
+        console.log(e)
+        myhtml1.innerText = tinyMCE.get('mytextarea').getContent();
+    })
+</script>
+{% endblock body %}
