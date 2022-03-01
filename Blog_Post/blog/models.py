@@ -1,3 +1,5 @@
+from statistics import mode
+from django import views
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
@@ -10,6 +12,7 @@ class Post(models.Model):
     content = models.TextField()
     author = models.CharField(max_length=20)
     slug = models.CharField(max_length=130)
+    views = models.IntegerField(default=0)
     timestamp = models.DateTimeField(blank=True)
 
     def __str__(self):

@@ -22,7 +22,7 @@
           <strong class="d-inline-block mb-2 text-primary">Article by {{ post.author }}</strong>
           <h3 class="mb-0">{{ post.title }}</h3>
           <div class="mb-1 text-muted">{{ post.datetime }}</div>
-          <p class="card-text mb-auto">{{ post.content| truncatechars:100 }}</p>
+          <p class="card-text mb-auto">{{ post.content|safe| truncatechars:400 }}</p>
           <div class="my-2">
           <a href="/blog/{{post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
           </div>

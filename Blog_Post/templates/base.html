@@ -177,6 +177,15 @@
 
 
   {% block body %}{% endblock body %}
+
+  {% block js %}
+  <script>
+    Let previews = document.getElementsByClassName('preview');
+    Array.from(previews).forEach((element)=>{
+      element.innerHTML = element.innerText;
+    })
+  </script>
+  {% endblock js %}
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: Bootstrap Bundle with Popper -->

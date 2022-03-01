@@ -1,3 +1,4 @@
+from turtle import pos
 from django.contrib import messages
 from django.shortcuts import redirect, render, HttpResponse
 from matplotlib.style import context
@@ -20,6 +21,8 @@ def blogHome(request):
 
 def blogPost(request, slug):
     post = Post.objects.filter(slug=slug)[0]
+    post.views = post.views+1
+    post.save()
     comments = BlogComment.objects.filter(post=post, parent = None)
     replies = BlogComment.objects.filter(post=post).exclude(parent = None)
     replyDict = {}
