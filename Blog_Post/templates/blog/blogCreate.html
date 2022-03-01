@@ -72,21 +72,24 @@ input, textarea{
     <form method="post">
         {% csrf_token %}
         <!-- <label for="title">Enter the Title</label> -->
-        <input type="text" name="title" id="title" class="px-4 py-2" placeholder="Enter Title of the Blog" ><br><br>
+        <input type="text" name="title" id="title" class="px-4 py-2 ml-5" placeholder="Enter Title of the Blog" style="margin-left:30px;"><br><br>
         
-        <textarea id = "myhtml1" name='myhtml1' class="px-4 py-2" placeholder="Converted HTML" cols="40"></textarea><br>
-        <!-- <label for="Author">Author</label> -->
+        <textarea id = "myhtml1" name='myhtml1' class="px-4 py-2" placeholder="Converted HTML" cols="40" style="display:none;"></textarea><br>
+        {% comment %} <!-- <label for="Author">Author</label> -->
         <input type="text" name="author" id="Author" class="px-4 py-2 mt-3" placeholder="Enter Author Name"><br><br>
         <!-- <label for="Slug">Slug</label> -->
         <input type="text" name="slug" id="Slug" class="px-4 py-2" placeholder="Enter Slug"><br><br>
-        <!-- <label for="Date">Date</label> -->
-        <input type="datetime-local" name="timestamp" id="Date" class="px-2 py-2" placeholder="Enter Date"><br><br>
-        <button type="submit" class="btn btn-success btn-large">Post your Blog</button>
+        <!-- <label for="Date">Date</label> --> {% endcomment %}
+        {% comment %} <input type="datetime-local" name="timestamp" id="Date" class="px-2 py-2" placeholder="Enter Date"><br><br> {% endcomment %}
+        <textarea id="mytextarea">Hello, World!</textarea><br>
+        <div class="d-flex justify-content-center mb-5">
+        <button type="submit" class="btn btn-outline-success" id="bt">Post your Blog</button>
+        </div>
     </form>
 </div>
 
-<textarea id="mytextarea">Hello, World!</textarea><br>
-<button id="bt" class="btn btn-primary mt-1 mb-3 mx-3">Get Html</button>
+
+{% comment %} <button  class="btn btn-primary mt-1 mb-3 mx-3">Get Html</button> {% endcomment %}
 
 
 <script>

@@ -3,7 +3,7 @@
 {% block title %}Edit Blog{% endblock title %}
 {% block style %}
 table, th, td {
-    width:800px;
+    width:1000px;
     padding:10px;
     border: 3px solid black;
     border-collapse: collapse;
@@ -25,18 +25,22 @@ table, th, td {
                 <th>Views</th>
                 <th>Visibilty</th>
                 <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Demo</td>
-                <td>1-03-2022</td>
-                <td>1000</td>
+                {% for i in pt %}
+                <td>{{i.title}}</td>
+                <td>{{i.timestamp }}</td>
+                <td>{{i.views}}</td>
                 <td>
-                    <button id="eyeb"><span id="eyee"><i class="fa fa-eye"></i></span></button>
+                    <button id="eyeb" ><a id="eyee" href="visible"><i class="fa fa-eye" ></i></a></button>
                 </td>
                 <td><a href="">Edit</a></td>
+                <td><button ><i class="fa fa-trash" style="color:red;"></i></button></td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

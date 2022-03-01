@@ -1,6 +1,4 @@
-from ast import Pass
 from turtle import pos
-from MySQLdb import Timestamp
 from django.contrib import messages
 from django.shortcuts import redirect, render, HttpResponse
 from matplotlib.style import context
@@ -10,20 +8,33 @@ from blog.templatetags import extras
 
 
 def blogCreate(request):
+    from datetime import datetime
+# get time now
+    dt = datetime.now()
+# format it to a string
+    timeStamp = dt.strftime('%Y-%m-%d %H:%M')
     if request.method == 'POST':
         title = request.POST['title']
         content = request.POST['myhtml1']
-        author = request.POST['author']
-        slug = request.POST['slug']
-        timestamp = request.POST['timestamp']
-        
-        post = Post(title=title, author=author,content=content,slug=slug,timestamp=timestamp)
+        author = request.user.first_name + " " + request.user.last_name
+        slug = request.POST['title']+"-"+request.user.username
+        timestamp = timeStamp
+
+        post = Post(title=title, author=author, content=content,
+                    slug=slug, timestamp=timestamp)
         post.save()
+        messages.success(request, "Your Blog Posted Successfully 👏👏")
 
     return render(request, "blog/blogCreate.html")
 
+
 def blogEdit(request):
-    return render(request, "blog/blogEdit.html")
+    uname = request.user.first_name + " " + request.user.last_name
+    pt = Post.objects.filter(author=uname)
+    context = {
+        'pt': pt
+    }
+    return render(request, "blog/blogEdit.html", context)
 
 
 def blogHome(request):
@@ -38,8 +49,8 @@ def blogPost(request, slug):
     post = Post.objects.filter(slug=slug)[0]
     post.views = post.views+1
     post.save()
-    comments = BlogComment.objects.filter(post=post, parent = None)
-    replies = BlogComment.objects.filter(post=post).exclude(parent = None)
+    comments = BlogComment.objects.filter(post=post, parent=None)
+    replies = BlogComment.objects.filter(post=post).exclude(parent=None)
     replyDict = {}
     for reply in replies:
         if reply.parent.sno not in replyDict.keys():
@@ -49,8 +60,8 @@ def blogPost(request, slug):
     context = {
         'post': post,
         'comments': comments,
-        'user' : request.user,
-        'replyDict' : replyDict,
+        'user': request.user,
+        'replyDict': replyDict,
     }
     return render(request, "blog/blogPost.html", context)
 
@@ -67,9 +78,14 @@ def postComment(request):
             comment.save()
             messages.success(request, "Your comment posted 👏👏")
         else:
-            parent = BlogComment.objects.get(sno = parentSno)
-            comment = BlogComment(comment=comment, user=user, post=post, parent = parent)
+            parent = BlogComment.objects.get(sno=parentSno)
+            comment = BlogComment(
+                comment=comment, user=user, post=post, parent=parent)
         comment.save()
         messages.success(request, "Your reply posted 👏👏")
 
     return redirect(f"/blog/{post.slug}")
+
+
+def visible(request):
+    pass
