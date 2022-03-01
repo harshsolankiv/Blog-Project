@@ -13,29 +13,29 @@ margin-left:20px;
 margin-right:20px;
 }
 .postcontainer{
-    margin:auto;
+margin:auto;
 justify-content:center;
 aling-item:center;
 }
 
 input, textarea{
-    border: solid black;
-    border-width : 2px;
+border: solid black;
+border-width : 2px;
 }
 
 #title{
-    font-size: 120%;
-    width: 40%;
-    font-weight: bold;
+font-size: 120%;
+width: 40%;
+font-weight: bold;
 }
 
 #Author, #Slug{
-    font-size: 105%;
+font-size: 105%;
 }
 
 #Date{
-    font-size: 105%;
-    width: 20%;
+font-size: 105%;
+width: 20%;
 }
 
 {% endblock style %}
@@ -62,34 +62,39 @@ input, textarea{
     alert = function () { };
 </script>
 <div class="d-flex justify-content-center">
-<h1 class="text-center mb-3 my-3"><span class="badge bg-info text-dark ">Create Post</span></h1>
-<h1 class="text-center mb-3 my-3 mx-1"><span class="badge bg-info text-dark "><a href="blogEdit" style="text-decoration:none;color:black; ">Edit Blog</a></span></h1>
+    <h1 class="text-center mb-3 my-3"><span class="badge bg-info text-dark ">Create Post</span></h1>
+    <h1 class="text-center mb-3 my-3 mx-1"><span class="badge bg-info text-dark "><a href="blogEdit"
+                style="text-decoration:none;color:black; ">Edit Blog</a></span></h1>
 </div>
 
 <div id="myhtml"></div>
 
-<div class="postcontainer mx-4 my-3" >
+<div class="postcontainer mx-4 my-3">
     <form method="post">
         {% csrf_token %}
         <!-- <label for="title">Enter the Title</label> -->
-        <input type="text" name="title" id="title" class="px-4 py-2 ml-5" placeholder="Enter Title of the Blog" style="margin-left:30px;"><br><br>
-        
-        <textarea id = "myhtml1" name='myhtml1' class="px-4 py-2" placeholder="Converted HTML" cols="40" style="display:none;"></textarea><br>
-        {% comment %} <!-- <label for="Author">Author</label> -->
+        <input type="text" name="title" id="title" class="px-4 py-2 ml-5" placeholder="Enter Title of the Blog"
+            style="margin-left:30px;"><br><br>
+
+        <textarea id="myhtml1" name='myhtml1' class="px-4 py-2" placeholder="Converted HTML" cols="40"
+            style="display:none;"></textarea><br>
+        {% comment %}
+        <!-- <label for="Author">Author</label> -->
         <input type="text" name="author" id="Author" class="px-4 py-2 mt-3" placeholder="Enter Author Name"><br><br>
         <!-- <label for="Slug">Slug</label> -->
         <input type="text" name="slug" id="Slug" class="px-4 py-2" placeholder="Enter Slug"><br><br>
         <!-- <label for="Date">Date</label> --> {% endcomment %}
-        {% comment %} <input type="datetime-local" name="timestamp" id="Date" class="px-2 py-2" placeholder="Enter Date"><br><br> {% endcomment %}
+        {% comment %} <input type="datetime-local" name="timestamp" id="Date" class="px-2 py-2"
+            placeholder="Enter Date"><br><br> {% endcomment %}
         <textarea id="mytextarea">Hello, World!</textarea><br>
         <div class="d-flex justify-content-center mb-5">
-        <button type="submit" class="btn btn-outline-success" id="bt">Post your Blog</button>
+            <button type="submit" class="btn btn-outline-success" id="bt">Post your Blog</button>
         </div>
     </form>
 </div>
 
 
-{% comment %} <button  class="btn btn-primary mt-1 mb-3 mx-3">Get Html</button> {% endcomment %}
+{% comment %} <button class="btn btn-primary mt-1 mb-3 mx-3">Get Html</button> {% endcomment %}
 
 
 <script>

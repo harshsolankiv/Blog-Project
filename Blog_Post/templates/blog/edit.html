@@ -89,6 +89,6 @@ input, textarea{
         myhtml1.innerText = tinyMCE.get('mytextarea').getContent();
     })
 
-    document.getElementById("mytextarea").value = "{{content2}}"
+    document.getElementById("mytextarea").value = "{{content2 | safe}}"
 </script>
 {% endblock body %}
