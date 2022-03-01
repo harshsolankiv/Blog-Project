@@ -72,25 +72,23 @@ input, textarea{
     <form method="post">
         {% csrf_token %}
 
-        <input type="text" name="title" id="title" class="px-4 py-2 ml-5" placeholder="Enter Title of the Blog" style="margin-left:30px;"><br><br>
+        <input type="text" name="title" id="title" class="px-4 py-2 ml-5" placeholder="Enter Title of the Blog" style="margin-left:30px;" value="{{title2}}"><br><br>
         
         <textarea id = "myhtml1" name='myhtml1' class="px-4 py-2" placeholder="Converted HTML" cols="40" style="display:none;"></textarea><br>
         
-        <textarea id="mytextarea">Hello, World!</textarea><br>
+        <textarea id="mytextarea"></textarea><br>
         <div class="d-flex justify-content-center mb-5">
-        <button type="submit" class="btn btn-outline-success" id="bt">Post your Blog</button>
+        <button type="submit" class="btn btn-outline-success" id="bt">Edit Blog</button>
         </div>
     </form>
 </div>
-
-
-
-
 
 <script>
     bt.addEventListener('click', (e) => {
         console.log(e)
         myhtml1.innerText = tinyMCE.get('mytextarea').getContent();
     })
+
+    document.getElementById("mytextarea").value = "{{content2}}"
 </script>
 {% endblock body %}

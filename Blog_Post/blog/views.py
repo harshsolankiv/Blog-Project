@@ -95,5 +95,12 @@ def delete(request, sno):
     return redirect(blogEdit)
 
 
-# def Edit(request, sno):
-#     return render(request, "edit.html")
+def Edit(request, sno):
+    item2 = Post.objects.get(sno=sno)
+    title2 = item2.title
+    content2 = item2.content
+    context = {
+        'title2' : title2,
+        'content2' : content2,
+    }
+    return render(request, "blog/edit.html/", context)
