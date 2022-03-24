@@ -1,7 +1,7 @@
 
 from django.contrib import messages
 from django.shortcuts import redirect, render, HttpResponse
-from matplotlib.style import context
+
 from blog.models import Post, BlogComment
 from blog.templatetags import extras
 # Create your views here.
