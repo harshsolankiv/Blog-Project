@@ -1,7 +1,0 @@
-**********FOR ADMIN**********
-username: admin
-password: admin
-
-**********FOR USER**********
-username: user1
-password: 123456
