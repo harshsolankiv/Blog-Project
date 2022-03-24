@@ -1,6 +1,6 @@
-import email
+
 from django.shortcuts import render, HttpResponse, redirect
-from matplotlib.pyplot import title
+
 from .models import Contact
 from blog.models import Post
 from django.contrib import messages
